@@ -22,9 +22,9 @@
 
 ### 기능
 
-- 손동작 인식을 이용하여 상황에 맞는 감지 모드를 실행 >> 후에 특정 상황에 어울리는 다양한 감지 모드를 만드는 것이 목표
-    - 화재, 연기 객체 감지 
-    - 낙상 움직임 감지
+    - 손동작 인식을 이용하여 상황에 맞는 감지 모드를 실행
+        - 화재, 연기 객체 감지 
+        - 낙상 움직임 감지
 
 
 ---
@@ -48,13 +48,13 @@
 - 노인의 낙상으로 인한 골절은 사망으로도 이어질 수 있다. 우리나라에서 낙상사고로 사망하는 65세 이상 노인은 한 해 83만여 명에 달하며 사고 사망원인 2위, 전체 질병 중에는 암에 이어 5위라고 한다. 최근 발표된 한국인 '질병부담' 순위에서도 7위에 진입, 간암과 위암보다도 높았다. 
 (출처: 헬스코리아뉴스)
 
-[고령자 안전사고 10건 중 6건이 낙상사고로 나타났어요! | 안전정보](https://www.consumer.go.kr/user/bbs/consumer/261/731/bbsDataView/3694.do?page=1&column=&search=&searchSDate=&searchEDate=&bbsDataCategory=)
+- [고령자 안전사고 10건 중 6건이 낙상사고로 나타났어요! | 안전정보](https://www.consumer.go.kr/user/bbs/consumer/261/731/bbsDataView/3694.do?page=1&column=&search=&searchSDate=&searchEDate=&bbsDataCategory=)
 
 
 < 화재 사고 참고문헌 > 
 
-["조리 중 깜빡한 듯"…사망 발생 수원 아파트 화재, 주방서 시작](https://www.yna.co.kr/view/AKR20230307055400061)
-[김제 단독주택 화재로 순직 성공일 소방사…전북도청장 엄수](https://www.newsis.com/view/?id=NISX20230307_0002216605)
+- ["조리 중 깜빡한 듯"…사망 발생 수원 아파트 화재, 주방서 시작](https://www.yna.co.kr/view/AKR20230307055400061)
+- [김제 단독주택 화재로 순직 성공일 소방사…전북도청장 엄수](https://www.newsis.com/view/?id=NISX20230307_0002216605)
 
 ---
 ## 5. 업무분담
