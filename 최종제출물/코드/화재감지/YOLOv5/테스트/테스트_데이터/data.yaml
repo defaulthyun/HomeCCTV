@@ -1,0 +1,12 @@
+names:
+- Fire
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: istiklal-iha
+  url: https://universe.roboflow.com/can-0ewex/istiklal-iha/dataset/1
+  version: 1
+  workspace: can-0ewex
+test: /content/drive/MyDrive/TEST/테스트_데이터/test/images
+train: /content/drive/MyDrive/TEST/테스트_데이터/train/images
+val: /content/drive/MyDrive/TEST/테스트_데이터/valid/images

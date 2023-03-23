@@ -1,0 +1,13 @@
+train: /content/drive/MyDrive/TEST/테스트_데이터/train/images
+val: /content/drive/MyDrive/TEST/테스트_데이터/valid/images
+test: /content/drive/MyDrive/TEST/테스트_데이터/test/images
+
+nc: 2
+names: ['Fire', 'Smoke']
+
+roboflow:
+  workspace: mahmoud-9wyf6
+  project: fire-and-smoke-detection-ltns0
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/mahmoud-9wyf6/fire-and-smoke-detection-ltns0/dataset/1
