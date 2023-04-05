@@ -13,6 +13,11 @@ torch>=1.7.0
 torchvision>=0.8.1
 tqdm>=4.64.0
 
+# Web -----------------------------------
+flask >= 2.2.3
+flask-socketio
+pymysql >= 1.0.2
+
 # Logging -------------------------------------
 # tensorboard>=2.4.1
 # clearml
@@ -37,7 +42,7 @@ tensorflow>=2.4.1  # TF exports (-cpu, -aarch64, -macos)
 # Extras --------------------------------------
 psutil  # system utilization
 thop>=0.1.1  # FLOPs computation
-# ipython  # interactive notebook
+ipython  # interactive notebook
 # albumentations>=1.0.3
 # pycocotools>=2.0.6  # COCO mAP
 roboflow
