@@ -21,7 +21,16 @@
 # 필요한 패키지 설치
 
     - 설치
+        - cd HomeCCTV
         - pip instal -r requirement.txt
 
-# 프로젝트 구조
+# 방법
 
+    - 플라스크 객체를 생성하는 코드
+        - 특정 패키지 밑에 위치 => CCTV_WEB
+        - __init__.py로 이름변경
+        - 구조
+            - CCTV_WEB
+                ▷ __init__.py
+        - 최종 실행 명령
+            - flask --app CCTV_WEB --debug run
