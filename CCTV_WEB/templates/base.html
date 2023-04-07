@@ -1,0 +1,35 @@
+{# 모든 페이지의 기본 베이스 이미지}
+<!DOCTYPE html>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Home CCTV</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    {# 기본 스타일, 메타정보#}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/main.css')}}"
+    />
+  </head>
+  <body class="is-preload">
+    {# 기본 페이스 삽입할 내용이 시작하는 위치 #} {% block content %} {# 기본
+    페이스 삽입할 내용이 끝나는 위치 #} {% endblock %}
+    <!-- Scripts -->
+    {# 기본 JS #}
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/scrolly.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/scrollex.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/browser.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/breakpoints.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/util.js')}}"></script>
+    <script src="{{url_for('static',filename='js/main.js')}}"></script>
+  </body>
+</html>

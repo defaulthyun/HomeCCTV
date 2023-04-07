@@ -15,7 +15,11 @@ tqdm>=4.64.0
 
 # Web -----------------------------------
 flask >= 2.2.3
+flask-socketio >= 5.3.3
 flask-cors >= 3.0.10
+flask-wtf >= 1.1.1
+flask-migrate
+email_validator
 pymysql >= 1.0.2
 PyJWT
 bcrypt
@@ -42,9 +46,9 @@ tensorflow>=2.4.1  # TF exports (-cpu, -aarch64, -macos)
 # openvino-dev>=2022.3  # OpenVINO export
 
 # Extras --------------------------------------
-psutil  # system utilization
-thop>=0.1.1  # FLOPs computation
-ipython  # interactive notebook
+# psutil  # system utilization
+# thop>=0.1.1  # FLOPs computation
+# ipython  # interactive notebook
 # albumentations>=1.0.3
 # pycocotools>=2.0.6  # COCO mAP
-roboflow
+# roboflow
