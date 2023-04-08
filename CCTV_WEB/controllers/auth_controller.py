@@ -1,5 +1,9 @@
 from flask import render_template, request, Response, redirect, url_for
 from CCTV_WEB.controllers import bp_auth as auth
+from CCTV_WEB.forms import FormSignup, FormLogin
+
+# DB 객체
+from CCTV_WEB import db
 
 # 시간 정보 획득, 시간차를 계산하는 함수
 from datetime import datetime, timedelta
@@ -8,8 +12,9 @@ from datetime import datetime, timedelta
 from flask import current_app
 
 # 암호화 관련
-import jwt
-import bcrypt
+from werkzeug.security import generate_password_hash
+from werkzeug.utils import redirect
+
 
 # ~/auth
 @auth.route("/")
@@ -26,8 +31,8 @@ def logout():
 
 @auth.route("/signup", methods=('GET', 'POST'))
 def signup():
-    form = UserCreateForm()
-    return render_template('/auth/signup.html')
+    form = FormSignup()
+    return render_template('/auth/signup.html', form)
 
 @auth.route("/delete")
 def delete():

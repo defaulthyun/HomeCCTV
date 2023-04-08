@@ -2,21 +2,43 @@ import os
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+# ORM 전역 변수 선언
+db = SQLAlchemy()
+migrate = Migrate()
+
 # 접속 URL 설정
 def create_app():
+    # Flask 객체 생성 
     app = Flask(__name__)
+
+    # 환경 변수 초기화
+    init_environment(app)
+    
     # 블루프린트 초기화
     init_blueprint(app)
+
+    return app
+
+def init_database(app):
+    # ORM
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    from .model import Models
+
+
+def init_environment(app):
 
     # py 모듈가져오기 해서 객체를 세팅해서 처리
     import CCTV_WEB.config as config
     app.config.from_object(config)    
     
-    # 환경변수(OS레벨, 플라스크레벨, 사용자정의레벨) 모두 출력
+    #환경변수(OS레벨, 플라스크레벨, 사용자정의레벨) 모두 출력
     # for k,v in app.config.items():
     #     print(k,v)
-
-    return app
 
 def init_blueprint(app):
 
