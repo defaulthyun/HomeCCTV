@@ -52,7 +52,8 @@
             - model > models.py에 테이블 관련 내용 기술
             - service> __init.py
                 - !!! from .model import models : 주석해제, 신규작성 !!!
-            - flask --app service db migrate
+            - 들어가기 전 데이터베이스(cctv_db) 생성 필요
+                - flask --app service db migrate
         - 모델(테이블) 생성, 변경 후 DB 적용
             - flask --app service db upgrade
         - 컨테이너 이미지 생성 시

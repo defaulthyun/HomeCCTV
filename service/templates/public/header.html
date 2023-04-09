@@ -5,8 +5,13 @@
       <span class="image avatar48"
         ><img src="static/images/avatar.jpg" alt=""
       /></span>
-      <h1 id="title">Test</h1>
-      <p>Engineer</p>
+      {% if user %}
+      <h1 id="title">{{ user.id }}</h1>
+      <p>{{ user.pw }}</p>
+      {% else %}
+      <h1 id="title">Guest</h1>
+      <p>Please log in</p>
+      {% endif %}
     </div>
     <!-- Nav -->
     <nav id="nav">

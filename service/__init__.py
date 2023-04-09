@@ -31,7 +31,7 @@ def init_database(app):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # 앞에서 작성한 모델을 플라스크의 migrate 기능이 인식 하도록 
+    # 앞에서 작성한 모델을 플라스크의 migrate 기능이 인식 하도록 작성
     from .model import models
 
 def init_environment(app):

@@ -42,7 +42,8 @@ def signup():
         if not user:
             user = User(username=form.username.data,
                         password=generate_password_hash(form.password.data),
-                        email=form.email.data)
+                        email=form.email.data,
+                        reg_date = datetime.now())
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('auth_bp.login'))
