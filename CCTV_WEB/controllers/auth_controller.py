@@ -19,11 +19,7 @@ from CCTV_WEB.model.models import User
 
 
 # ~/auth
-@auth.route("/")
-def home():
-    return "인증 페이지"
-
-@auth.route("/login", methods=('GET', 'POST'))
+@auth.route("/", methods=('GET', 'POST'))
 def login():
     form = UserLoginForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -40,10 +36,6 @@ def login():
         flash(error)
     return render_template('auth/login.html', form=form)
 
-@auth.route("/logout")
-def logout():
-    return "auth logout"
-
 @auth.route("/signup", methods=('GET', 'POST'))
 def signup():
     form = UserCreateForm()
@@ -59,6 +51,11 @@ def signup():
         else:
             flash('이미 존재하는 유저입니다.')
     return render_template('auth/signup.html', form=form)
+
+
+@auth.route("/logout")
+def logout():
+    return "auth logout"
 
 @auth.route("/delete")
 def delete():

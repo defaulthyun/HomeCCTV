@@ -33,7 +33,7 @@
             - CCTV_WEB
                 ▷ __init__.py
         - 최종 실행 명령
-            - flask --app CCTV_WEB --debug run
+            - (cctv) C:\Users\HANSUNG\github\HomeCCTV>flask --app CCTV_WEB --debug run
 
 # DB 관련 (ORM)
 

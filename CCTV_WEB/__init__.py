@@ -46,16 +46,16 @@ def init_environment(app):
 def init_blueprint(app):
 
     # 불루프린트로 정의된 개별 페이지 관련 내용 로드
-    from .controllers import main_controller
     from .controllers import auth_controller
+    from .controllers import main_controller
     from .controllers import upload_controller
 
     # 컨트롤러 __init__.py 에서 선언된 객체 불러오기
     from .controllers import bp_main, bp_auth, bp_upload
 
     # 플라스크 객체에 블루 프린트 등록
-    app.register_blueprint(bp_main)
     app.register_blueprint(bp_auth)
+    app.register_blueprint(bp_main)
     app.register_blueprint(bp_upload)
 
     pass
