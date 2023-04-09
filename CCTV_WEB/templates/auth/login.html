@@ -1,17 +1,36 @@
 {% extends 'base.html' %} {% block content %}
-<div id="main">
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form method="post">
-        <label for="username">ID</label>
-        <input type="text" id="username" name="username" /><br /><br />
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" /><br /><br />
-        <input type="submit" value="Login" />
-        <input type="submit" value="Signup" />
-      </form>
-    </div>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form method="post">
+      {{ form.csrf_token }} {% include "form_errors.html" %}
+      <div class="mb-3">
+        <label for="username">사용자 이름</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          id="username"
+          value="{{ form.username.data or '' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password">비밀번호</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          value="{{ form.password.data or '' }}"
+        />
+      </div>
+      <button type="submit" formaction="{{ url_for('main_bp.home') }}">
+        Login</button
+      ><br /><br />
+      <button type="submit" formaction="{{ url_for('auth_bp.signup') }}">
+        Signup</button
+      ><br /><br />
+    </form>
   </div>
 </div>
 {% endblock %}

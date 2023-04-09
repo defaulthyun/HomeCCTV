@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 
+# ORM을 위한 추가
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -16,6 +17,9 @@ def create_app():
 
     # 환경 변수 초기화
     init_environment(app)
+
+    # DB 초기화
+    init_database(app)
     
     # 블루프린트 초기화
     init_blueprint(app)
@@ -23,12 +27,11 @@ def create_app():
     return app
 
 def init_database(app):
-    # ORM
+    # ORM을 위한 Flask 객체 - SQL 객체 - Migr 객체 연결
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .model import Models
-
+    #from .model import Models
 
 def init_environment(app):
 
@@ -47,7 +50,7 @@ def init_blueprint(app):
     from .controllers import auth_controller
     from .controllers import upload_controller
 
-    # 블루프린트 init에서 선언된 객체 불러오기
+    # 컨트롤러 __init__.py 에서 선언된 객체 불러오기
     from .controllers import bp_main, bp_auth, bp_upload
 
     # 플라스크 객체에 블루 프린트 등록

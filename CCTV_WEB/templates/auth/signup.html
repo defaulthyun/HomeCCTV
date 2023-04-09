@@ -1,17 +1,55 @@
 {% extends 'base.html' %} {% block content %}
-<div id="main">
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <form method="post">
-        <label for="username">ID</label>
-        <input type="text" id="username" name="username" /><br /><br />
+<form method="post">
+  {{ form.csrf_token}} {% include "form_errors.html"%}
+  <fieldset>
+    <div class="container" style="margin: 20px auto">
+      <h5 class="my-3 border-bottom pb-2" style="margin: 0 auto">
+        SignUp Page
+      </h5>
+      <br /><br />
+      <div class="mb-3">
+        <label for="id">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          id="username"
+          value="{{form.username.data or ''}}"
+        />
+      </div>
+      <div class="mb-3">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" /><br /><br />
-        <input type="submit" value="Login" />
-        <input type="submit" value="Signup" />
-      </form>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          id="password"
+          value="{{ form.password.data or '' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password_ok">Repeat Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password_ok"
+          id="password_ok"
+          value="{{ form.password_ok.data or '' }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          value="{{ form.email.data or '' }}"
+        />
+      </div>
+      <br /><br />
+      <button type="submit" class="btn btn-primary">Sign up</button>
     </div>
-  </div>
-</div>
+  </fieldset>
+</form>
 {% endblock %}
