@@ -27,37 +27,38 @@
 # 실행
 
     - 플라스크 객체를 생성하는 코드
-        - 특정 패키지 밑에 위치 => CCTV_WEB
+        - 특정 패키지 밑에 위치 => service
         - __init__.py로 이름변경
         - 구조
-            - CCTV_WEB
+            - service
                 ▷ __init__.py
         - 최종 실행 명령
-            - (cctv) C:\Users\HANSUNG\github\HomeCCTV>flask --app CCTV_WEB --debug run
+            - cd ..
+            - (cctv) C:\Users\HANSUNG\github\HomeCCTV>flask --app service --debug run
 
 # DB 관련 (ORM)
 
         - 경로 설정 : (cctv) C:\Users\HANSUNG\github\HomeCCTV>
         - DB 생성 및 초기화 (1회)
             - FLASK_APP=service 은 없어도 되는데, 이 앱은 app or wsfi로 시작하는 엔트리가 없어 별도로 지정해야된다.
-            - flask --app CCTV_WEB db init
+            - flask --app service db init
                 - sqllite : 소형 DB, 스마트폰에 사용되는 DB, DB 자동 생성 및 파일럿 형태에서 사용
                 - mysql와 같은 DB(케이스별 상이)는 실제로는 생성 안됨
-            - MAC)FLASK_APP=CCTV_WEB flask db init
+            - MAC)FLASK_APP=service flask db init
             - migrations 폴더가 새로 생성돈다
                 - 내부는 자동으로 만들어지는 구조이므로, 관려하지 않음
                 - 단 versions 밑으로 수정할때마다 새로운 버전 DB 관련 생성
         - 모델(테이블) 생성, 변경
             - model > models.py에 테이블 관련 내용 기술
-            - CCTV_WEB> __init.py
+            - service> __init.py
                 - !!! from .model import models : 주석해제, 신규작성 !!!
-            - flask --app CCTV_WEB db migrate
+            - flask --app service db migrate
         - 모델(테이블) 생성, 변경 후 DB 적용
-            - flask --app CCTV_WEB db upgrade
+            - flask --app service db upgrade
         - 컨테이너 이미지 생성 시
             - 위 명령들을 차례대로 수행해서 DB 초기화, 생성과정 수행 필요
 
     - 필요한 기능들 CLI를 통해 시뮬레이션
         - DBA는 sql문을 작성해서 쿼리 구현
         - ORM는 shell을 열어 파이썬 코드로 구현
-            - Flask --app CCTV_WEB shell
+            - Flask --app service shell

@@ -1,5 +1,5 @@
 from flask import render_template, request, session, Response, redirect, url_for
-from CCTV_WEB.controllers import bp_auth as auth
+from service.controllers import bp_auth as auth
 
 # 시간 정보 획득, 시간차를 계산하는 함수
 from datetime import datetime, timedelta
@@ -12,11 +12,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
 # DB 객체 연동
-from CCTV_WEB import db
-from CCTV_WEB.forms.FormSignup import UserCreateForm
-from CCTV_WEB.forms.FormLogin import UserLoginForm
-from CCTV_WEB.model.models import User
-
+from service import db
+from service.forms import UserCreateForm, UserLoginForm
+from service.model.models import User
 
 # ~/auth
 @auth.route("/", methods=('GET', 'POST'))
@@ -43,15 +41,14 @@ def signup():
         user = User.query.filter_by(username= form.username.data).first()
         if not user:
             user = User(username=form.username.data,
-                        password=generate_password_hash(form.password1.data),
+                        password=generate_password_hash(form.password.data),
                         email=form.email.data)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('auth_bp.login'))
         else:
-            flash('이미 존재하는 유저입니다.')
+            flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
-
 
 @auth.route("/logout")
 def logout():

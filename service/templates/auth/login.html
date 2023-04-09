@@ -24,12 +24,18 @@
           value="{{ form.password.data or '' }}"
         />
       </div>
-      <button type="submit" formaction="{{ url_for('main_bp.home') }}">
-        Login</button
-      ><br /><br />
+      <br /><br />
+      <button
+        type="submit"
+        formaction="{{ url_for('main_bp.home') }}"
+        method="post"
+      >
+        Login
+      </button>
       <button type="submit" formaction="{{ url_for('auth_bp.signup') }}">
-        Signup</button
-      ><br /><br />
+        Signup
+      </button>
+      <br /><br />
     </form>
   </div>
 </div>

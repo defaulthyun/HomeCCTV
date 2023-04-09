@@ -31,12 +31,13 @@ def init_database(app):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    #from .model import Models
+    # 앞에서 작성한 모델을 플라스크의 migrate 기능이 인식 하도록 
+    from .model import models
 
 def init_environment(app):
 
     # py 모듈가져오기 해서 객체를 세팅해서 처리
-    import CCTV_WEB.config as config
+    import service.config as config
     app.config.from_object(config)    
     
     #환경변수(OS레벨, 플라스크레벨, 사용자정의레벨) 모두 출력

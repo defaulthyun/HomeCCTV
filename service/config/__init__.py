@@ -6,7 +6,7 @@ DB_USER     = "root"
 DB_PASSWORD = "1q2w3e4r"
 DB_HOST     = "127.0.0.1"
 DB_PORT     = 3306
-DB_DATABASE = "cctvuser_db" # 이 서비스에서 사용할 새로 만들 데이터베이스명 ( DB 생성 필요)
+DB_DATABASE = "cctv_db" # 이 서비스에서 사용할 새로 만들 데이터베이스명 ( DB 생성 필요)
 
 # 이 환경변수는 migrate가 필수로 요구하는 환경변수
 SQLALCHEMY_DATABASE_URI=f"{DB_PROTOCAL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
