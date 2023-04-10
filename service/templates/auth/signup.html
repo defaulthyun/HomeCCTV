@@ -5,7 +5,7 @@
   <br /><br />
   <form method="post">
     <!-- CSRF 토큰 오류에서 탈출 -->
-    {{ form.csrf_token}} {% include "form_errors.html"%}
+    {{form.csrf_token}} {% include "form_errors.html"%}
     <div class="mb-3">
       <label for="username">Username</label>
       <input
@@ -13,6 +13,7 @@
         class="form-control"
         name="username"
         id="username"
+        placeholder="Input ID"
         value="{{form.username.data or ''}}"
       />
     </div>
@@ -23,6 +24,7 @@
         class="form-control"
         name="password"
         id="password"
+        placeholder="Input Password"
         value="{{ form.password.data or '' }}"
       />
     </div>
@@ -33,6 +35,7 @@
         class="form-control"
         name="password_ok"
         id="password_ok"
+        placeholder="Please Input Repeat Password"
         value="{{ form.password_ok.data or '' }}"
       />
     </div>
@@ -43,6 +46,7 @@
         class="form-control"
         name="email"
         id="email"
+        placeholder="Input Email"
         value="{{ form.email.data or '' }}"
       />
     </div>

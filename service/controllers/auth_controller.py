@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # Flask 객체 획득
 from flask import current_app
 
-# 암호화 관련
+# 로그인 및 회원가입 부분 암호화 관련
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 

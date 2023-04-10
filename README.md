@@ -20,14 +20,14 @@
 
 ## 3. 목표
 
-- 객체 및 움직임 감지를 이용하여 사고발생 시 사용자에게 알림을 주는 AI 홈 CCTV
+- 객체 및 움직임 감지를 이용하여 사고발생 시 사용자에게 알림을 주는 AI Home CCTV
 - 추후에 알림 등의 기능을 확장하여 다양한 상황에 대응할 수 있게 만드는 것이 목표
 
 ### 기능
 
-    - 손동작 인식을 이용하여 상황에 맞는 감지 모드를 실행
-        - 화재, 연기 객체 감지
-        - 낙상 움직임 감지
+- 손동작 인식을 이용하여 상황에 맞는 감지 모드를 실행
+  - 화재, 연기 객체 감지
+  - 낙상 움직임 감지
 
 ---
 
@@ -42,11 +42,9 @@
 
 - [생애 주기에 따른 낙상 환자의 발생 특성과 사망 위험 요인](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002751596)
 
-- 낙상 유병률은 전 세계적으로 나이가 들면서 증가하며 실제로 중요한 건강 문제로 간주됩니다. 낙상은 가벼운 부상에서 심각한 부상의 20-30% 또는 심지어 사망으로 이어지기 때문에 종종 즉각적인 치료가 필요합니다 . 낙상 감지 시스템은 낙상이 발생하면 경고하여 그 결과를 완화합니다. 환자가 치료를 받는 데 필요한 시간을 개선하는 실시간 낙상 감지로 낙상의 부정적인 결과를 줄일 수 있습니다. 낙상이 빨리 감지되지 않으면 환자가 때때로 바닥에 누워 있어 추가적인 의학적 및 심리적 문제를 일으킵니다.
-  (출처: MDPI)
+- [NaCl Accumulation, Shoot Biomass, Antioxidant Capacity, and Gene Expression of Passiflora edulis f. Flavicarpa Deg. in Response to Irrigation Waters of Moderate to High Salinity](https://www.mdpi.com/2077-0472/12/11/1856)
 
-- 노인의 낙상으로 인한 골절은 사망으로도 이어질 수 있다. 우리나라에서 낙상사고로 사망하는 65세 이상 노인은 한 해 83만여 명에 달하며 사고 사망원인 2위, 전체 질병 중에는 암에 이어 5위라고 한다. 최근 발표된 한국인 '질병부담' 순위에서도 7위에 진입, 간암과 위암보다도 높았다.
-  (출처: 헬스코리아뉴스)
+- [낙상사고로 사망하는 노인 연간 83만 명 | 위험 대처능력 떨어지는 노인들 각별히 주의해야](https://www.hkn24.com/news/articleView.html?idxno=330956)
 
 - [고령자 안전사고 10건 중 6건이 낙상사고로 나타났어요! | 안전정보](https://www.consumer.go.kr/user/bbs/consumer/261/731/bbsDataView/3694.do?page=1&column=&search=&searchSDate=&searchEDate=&bbsDataCategory=)
 

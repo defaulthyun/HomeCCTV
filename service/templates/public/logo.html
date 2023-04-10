@@ -1,0 +1,23 @@
+<div
+  id="logo"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <span class="image avatar48">
+    <img src="static/images/avatar.jpg" alt="" />
+  </span>
+  {% if g.user %}
+  <h1 id="title">{{ g.user.username }}</h1>
+  <br />
+  <button type="submit" class="btn btn-primary">
+    <a class="nav-link" href="{{ url_for('auth_bp.logout') }}">Sign out</a>
+  </button>
+  {% else %}
+  <h1 id="title">Guest</h1>
+  <p>Please log in</p>
+  {% endif %}
+</div>

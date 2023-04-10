@@ -1,0 +1,69 @@
+<section id="about" class="three">
+  <div class="container">
+    <header>
+      <h2>Detection</h2>
+    </header>
+    <form
+      action="{{ url_for('main_bp.detection') }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="file-upload" class="custom-file-upload">
+        <img id="upload-image" src="static/images/pic08.jpg" alt="" />
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        name="file"
+        accept="image/*,video/*"
+        style="display: none"
+      />
+      <br />
+      <input type="submit" value="Detection" />
+      <!-- 파일 재업로드 버튼 생성 -->
+      <button type="button" onclick="clearFile()">Reupload</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  let fileUpload = document.getElementById("file-upload");
+  let uploadImage = document.getElementById("upload-image");
+
+  function previewFile() {
+    let file = fileUpload.files[0];
+    let reader = new FileReader();
+
+    reader.onloadend = function () {
+      // 미리보기 객체 생성
+      let preview = null;
+
+      if (file.type.startsWith("image/")) {
+        preview = document.createElement("img");
+        preview.classList.add("preview");
+        preview.src = reader.result;
+      } else if (file.type.startsWith("video/")) {
+        preview = document.createElement("video");
+        preview.classList.add("preview");
+        preview.controls = true;
+        preview.src = reader.result;
+      }
+      if (preview) {
+        uploadImage.parentNode.replaceChild(preview, uploadImage);
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  // CHATGPT 활용 재업로드 부분 참고 - 실행이 안됨...
+  function clearFile() {
+    fileUpload.value = null;
+    uploadImage.src = "static/images/pic08.jpg";
+  }
+
+  fileUpload.addEventListener("change", function () {
+    previewFile();
+  });
+</script>
