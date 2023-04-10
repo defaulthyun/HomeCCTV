@@ -1,4 +1,4 @@
-from flask import render_template, request, session, Response, redirect, url_for
+from flask import render_template, request, session, Response, redirect, url_for, g
 from service.controllers import bp_auth as auth
 
 # 시간 정보 획득, 시간차를 계산하는 함수
@@ -34,7 +34,7 @@ def login():
         flash(error)
     return render_template('auth/login.html', form=form)
 
-@auth.route("/signup", methods=('GET', 'POST'))
+@auth.route("/signup/", methods=('GET', 'POST'))
 def signup():
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -51,9 +51,19 @@ def signup():
             flash('이미 존재하는 사용자입니다.')
     return render_template('auth/signup.html', form=form)
 
-@auth.route("/logout")
+# request 변수와 마찬가지로 [요청 → 응답] 과정 처리 부분
+@auth.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None # g.user에는 User 객체가 저장
+    else:
+        g.user = User.query.get(user_id)
+
+@auth.route("/logout/")
 def logout():
-    return "auth logout"
+    session.clear()
+    return redirect(url_for('auth_bp.login'))
 
 @auth.route("/delete")
 def delete():

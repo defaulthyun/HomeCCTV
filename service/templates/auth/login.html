@@ -25,14 +25,12 @@
         />
       </div>
       <br /><br />
+      <button type="submit" class="btn btn-primary">Login</button>
       <button
         type="submit"
-        formaction="{{ url_for('main_bp.home') }}"
-        method="post"
+        class="btn btn-primary"
+        formaction="{{ url_for('auth_bp.signup') }}"
       >
-        Login
-      </button>
-      <button type="submit" formaction="{{ url_for('auth_bp.signup') }}">
         Signup
       </button>
       <br /><br />

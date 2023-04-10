@@ -5,9 +5,15 @@
       <span class="image avatar48"
         ><img src="static/images/avatar.jpg" alt=""
       /></span>
-      {% if user %}
-      <h1 id="title">{{ user.id }}</h1>
-      <p>{{ user.pw }}</p>
+      {% if g.user %}
+      <h1 id="title">{{ g.user.username }}</h1>
+      <form
+        id="logout-form"
+        method="POST"
+        action="{{ url_for('auth_bp.logout') }}"
+      >
+        <button type="submit" class="btn btn-primary">logout</button>
+      </form>
       {% else %}
       <h1 id="title">Guest</h1>
       <p>Please log in</p>

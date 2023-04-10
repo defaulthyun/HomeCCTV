@@ -49,7 +49,6 @@
       var $this = $(this),
         id = $this.attr("href"),
         $section = $(id);
-      console.log($section);
 
       // No section for this link? Bail.
       if ($section.length < 1) return;
