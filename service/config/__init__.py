@@ -14,5 +14,5 @@ SQLALCHEMY_DATABASE_URI=f"{DB_PROTOCAL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_
 # sqlalchemy 추가 설정
 SQLALCHEMY_TRACK_MODIFICATIONS=False
 
-# 업로드 할 파일 저장 할 폴더 경로 지정
-UPLOAD_FOLDER = './upload'
+# 업로드 받을 폴더 지정
+UPLOAD_FOLDER = 'service/profile-picture'

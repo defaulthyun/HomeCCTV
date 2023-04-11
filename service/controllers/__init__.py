@@ -18,7 +18,6 @@ bp_main = Blueprint(
     static_folder ="../static",
 )
 
-
 # 파일 업로드 관련 서비스
 bp_upload = Blueprint(
     "upload_bp",

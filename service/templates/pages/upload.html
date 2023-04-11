@@ -4,24 +4,26 @@
       <h2>Detection</h2>
     </header>
     <form
-      action="{{ url_for('main_bp.detection') }}"
+      action="{{ url_for('upload_bp.upload') }}"
       method="POST"
       enctype="multipart/form-data"
     >
+      <!-- Wrap the label around the image and file input -->
       <label for="file-upload" class="custom-file-upload">
         <img id="upload-image" src="static/images/pic08.jpg" alt="" />
+        <input
+          id="file-upload"
+          type="file"
+          name="file"
+          accept="image/*,video/*"
+          style="display: none"
+          onchange="previewFile()"
+        />
       </label>
-      <input
-        id="file-upload"
-        type="file"
-        name="file"
-        accept="image/*,video/*"
-        style="display: none"
-      />
       <br />
       <input type="submit" value="Detection" />
-      <!-- 파일 재업로드 버튼 생성 -->
-      <button type="button" onclick="clearFile()">Reupload</button>
+      <!-- Add a button to allow clearing the file input -->
+      <button type="button" onclick="clearFile()">Clear</button>
     </form>
   </div>
 </section>
@@ -35,7 +37,7 @@
     let reader = new FileReader();
 
     reader.onloadend = function () {
-      // 미리보기 객체 생성
+      // Create a preview element based on the file type
       let preview = null;
 
       if (file.type.startsWith("image/")) {
@@ -48,6 +50,8 @@
         preview.controls = true;
         preview.src = reader.result;
       }
+
+      // Replace the upload image with the preview element
       if (preview) {
         uploadImage.parentNode.replaceChild(preview, uploadImage);
       }
@@ -57,13 +61,10 @@
       reader.readAsDataURL(file);
     }
   }
-  // CHATGPT 활용 재업로드 부분 참고 - 실행이 안됨...
+
   function clearFile() {
+    // Clear the file input value and restore the default image
     fileUpload.value = null;
     uploadImage.src = "static/images/pic08.jpg";
   }
-
-  fileUpload.addEventListener("change", function () {
-    previewFile();
-  });
 </script>

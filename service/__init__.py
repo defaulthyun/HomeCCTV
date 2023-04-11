@@ -36,7 +36,7 @@ def init_database(app):
 
 def init_environment(app):
 
-    # py 모듈가져오기 해서 객체를 세팅해서 처리
+    # config >> __init__.py에 선언된 객체들을 세팅해서 처리
     import service.config as config
     app.config.from_object(config)    
     
@@ -49,10 +49,14 @@ def init_blueprint(app):
     # 불루프린트로 정의된 개별 페이지 관련 내용 로드
     from .controllers import auth_controller
     from .controllers import main_controller
+    from .controllers import upload_controller
 
     # 컨트롤러 __init__.py 에서 선언된 객체 불러오기
-    from .controllers import bp_main, bp_auth
+    from .controllers import bp_main, bp_auth, bp_upload
 
     # 플라스크 객체에 블루 프린트 등록
-    app.register_blueprint(bp_auth)
-    app.register_blueprint(bp_main)
+    auth_app = app.register_blueprint(bp_auth)
+    main_app = app.register_blueprint(bp_main)  
+    upload_app = app.register_blueprint(bp_upload)
+
+    return auth_app, main_app, upload_app
