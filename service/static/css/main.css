@@ -210,7 +210,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
+  font-weight: 400;
   color: #666;
   line-height: 1.5em;
 }
@@ -235,7 +235,7 @@ h6 a strong {
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 3em;
   letter-spacing: -1px;
 }
 
@@ -2405,7 +2405,7 @@ button:active,
 
 #main > section.one {
   background-color: #81918e;
-  background-image: url("../images/banner.jpg");
+  background-image: url("../images/banner.jpeg");
 }
 
 #main > section.two {
