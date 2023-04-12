@@ -4,7 +4,7 @@ SECRET_KEY = "dev"  # 서비스 추론이 불가한 해시값 추천
 DB_PROTOCAL = "mysql+pymysql"
 DB_USER     = "root"
 DB_PASSWORD = "1q2w3e4r"
-DB_HOST     = "127.0.0.1"
+DB_HOST     = "db" #"127.0.0.1"
 DB_PORT     = 3306
 DB_DATABASE = "cctv_db" # 이 서비스에서 사용할 새로 만들 데이터베이스명 ( DB 생성 필요)
 
@@ -15,4 +15,4 @@ SQLALCHEMY_DATABASE_URI=f"{DB_PROTOCAL}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_
 SQLALCHEMY_TRACK_MODIFICATIONS=False
 
 # 업로드 받을 폴더 지정
-UPLOAD_FOLDER = 'service/profile-picture'
+UPLOAD_FOLDER = 'service/upload_folder'
