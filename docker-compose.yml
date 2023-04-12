@@ -1,0 +1,80 @@
+# 서비스, 컨테이는 의존성 고려하여 순서대로 기술
+services:
+  # db
+  db:
+    # Dockerfile 없이 이미지 빌드할 내용을 직접 기술
+    image: mariadb
+    # 비밀번호 관련 이전 버전들과의 호환성을 위한 플러그인 설정
+    command: "--default-authentication-plugin=mysql_native_password"
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'mysqladmin ping -h 127.0.0.1 --password="$$(cat /run/secrets/db-password)" --silent',
+        ]
+      interval: 10s
+      retries: 3
+      start_period: 30s
+    # 포트 설정
+    expose:
+      - 3306
+      - 3307
+    # 환경변수
+    environment:
+      - MYSQL_DATABASE=cctv_db
+      - MYSQL_ROOT_PASSWORD=1q2w3e4r
+    # 네트워크
+    networks:
+      - was_backend_net
+    # 볼륨, 볼륨마운트 방식
+    volumes:
+      - db_vol:/var/lib/mysql
+  # backend
+  backend:
+    # 이미지 출처 혹은 이미지 빌드(생성)등 정보 기술 : Dockerfile or 직접 기술
+    build:
+      # 타겟 -> 이미지명
+      target: builder
+    # 플라스크를 정상적으로 종료시키기 위해서. Ctrl+C -> 종료시그널
+    # SIGINT값을 설정 => Ctrl+C 키보드 인터럽트 송신
+    stop_signal: SIGINT
+    # 포트
+    ports:
+      - "8000:8000"
+    tty: True
+    stdin_open: True
+    restart: always
+    networks:
+      - web_frontend_net
+      - was_backend_net
+    depends_on:
+      # db라는 이름을 가진 컨테이너의 상태가 살아 있을때 가동
+      db:
+        condition: service_healthy
+  # proxy -> web파트, nginx, 구성설정
+  proxy:
+    # proxy 폴더 밑에가서 Dockerfile을 찾아서 빌드
+    build: proxy
+    # 재가동 옵션
+    restart: always
+    # 포트 설정, Dockerfile 내에 EXPOSE 미사용
+    ports:
+      - 80:80
+    # 구동시 의존성 부여 -> backend(was)가 가동된후에 가동
+    depends_on:
+      - service
+    # 네트워크
+    networks:
+      - web_frontend_net
+
+# 볼륨
+volumes:
+  # 볼륨 마운트
+  db_vol:
+# 네트워크
+networks:
+  # 프런트 방향 네트워크
+  web_frontend_net:
+  # 백엔드 방향 네트워크
+  was_backend_net:

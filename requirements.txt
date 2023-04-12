@@ -4,14 +4,14 @@
 # Base ----------------------------------------
 matplotlib>=3.2.2
 numpy>=1.18.5
-opencv-python>=4.6.0
+# opencv-python>=4.6.0
 Pillow>=7.1.2
 PyYAML>=5.3.1
 requests>=2.23.0
 scipy>=1.4.1
-torch>=1.7.0
-torchvision>=0.8.1
-tqdm>=4.64.0
+# torch>=1.7.0
+# torchvision>=0.8.1
+# tqdm>=4.64.0
 
 
 # Web -----------------------------------
@@ -22,7 +22,7 @@ flask-wtf >= 1.1.1
 flask-migrate
 email_validator
 pymysql >= 1.0.2
-ultralytics
+# ultralytics
 
 # Logging -------------------------------------
 # tensorboard>=2.4.1

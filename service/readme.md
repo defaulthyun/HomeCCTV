@@ -21,7 +21,6 @@
 # 필요한 패키지 설치
 
     - 설치
-        - cd HomeCCTV
         - pip instal -r requirement.txt
 
 # 실행
