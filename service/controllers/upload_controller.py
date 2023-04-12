@@ -1,7 +1,5 @@
 import os
 
-# py을 모듈가져 온 후, (객체)를 세팅해서 처리 가능
-import service.config as config
 from flask import render_template, request, session, Response, redirect, url_for, g
 from flask import current_app
 from service.controllers import bp_upload as upload
@@ -13,15 +11,22 @@ from werkzeug.utils import secure_filename # 업로드할 파일이 실제 시�
 def upload():
     if request.method == 'POST':
 
-        # 업로드 한 파일 가져옴
+        # 앞 서 upload.html에서 받은 파일을 불러온다
         uploaded_file = request.files['file']
 
-        # 업로드 한 파일 저장
-        filename = secure_filename(uploaded_file.filename)
-        filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-        uploaded_file.save(filepath)
+        if 'user_id' in session:
+            user_id = session['user_id']
+        else:
+            user_id = 'unknown'
 
-        # 업로드 한 파일을 모델 예측
+        # 각 회원의 아이디로 개인 폴더를 만든 뒤, 구분하여 저장
+        filename = secure_filename(uploaded_file.filename)
+        user_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], str(user_id))
+
+        # 이미 개인 폴더 있을 시 폴더 생성 X
+        os.makedirs(user_folder, exist_ok=True)
+        filepath = os.path.join(user_folder, filename)
+        uploaded_file.save(filepath)
 
         # 예측 결과를 이미지
         return "Upload successful"
