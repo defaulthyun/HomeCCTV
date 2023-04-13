@@ -1,70 +1,133 @@
-<section id="about" class="three">
+<style>
+  .image-box {
+    padding: 100px;
+    border: 1px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .image-thumbnail {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+  }
+</style>
+
+<!-- Intro -->
+<section id="main" class="one dark cover">
   <div class="container">
     <header>
-      <h2>Detection</h2>
+      <h2 class="alt">FIRE DETECTION</h2>
+      <p>화염과 연기 감지 모델 테스트 페이지</p>
     </header>
-    <form
-      action="{{ url_for('upload_bp.upload') }}"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <!-- Wrap the label around the image and file input -->
-      <label for="file-upload" class="custom-file-upload">
-        <img id="upload-image" src="static/images/pic08.jpg" alt="" />
-        <input
-          id="file-upload"
-          type="file"
-          name="file"
-          accept="image/*,video/*"
-          style="display: none"
-          onchange="previewFile()"
-        />
-      </label>
+    <footer>
+      <a href="#upload" class="button scrolly">이미지 업로드 하러가기</a>
+    </footer>
+  </div>
+</section>
+
+<!-- Upload -->
+<section id="upload" class="two">
+  <div class="container">
+    <header>
+      <h2 class="alt">YOLOv8 모델을 이용한 화염 감지 테스트</h2>
+      <p>이미지 파일을 업로드 해주세요</p>
+    </header>
+    <footer>
+      <div>
+        <div style="padding: 100px; border: 1px solid black">
+          <form id="file_form">
+            <input type="file" id="input_file" name="input_file" />
+            <button onclick="test()" type="button" class="btn btn-primary">
+              사진 분석 시작
+            </button>
+          </form>
+        </div>
+        <br />
+        <div>
+          <a
+            onClick="window.location.reload(); location.href = '#main';"
+            style="cursor: pointer"
+            >[새로고침]</a
+          >
+        </div>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- Result -->
+<section id="reslut" class="three">
+  <div class="container">
+    <header>
+      <h2 class="alt">결과</h2>
+      <p id="laod_p">please upload your file!</p>
+    </header>
+    <footer>
+      <div>
+        <div style="padding: 10px; border: 1px solid black; height: 30%">
+          <img
+            id="res_img"
+            src="/static/images/no_img.gif"
+            style="object-fit: contain; width: 100%; height: 100%"
+          />
+        </div>
+        <br />
+        <div>
+          <a class="button" id="down_btn" onclick="download_img()"
+            >이미지 다운로드 하기</a
+          >
+        </div>
+      </div>
       <br />
-      <input type="submit" value="Detection" />
-      <!-- Add a button to allow clearing the file input -->
-      <button type="button" onclick="clearFile()">Clear</button>
-    </form>
+      <div>
+        <a
+          onClick="window.location.reload(); location.href = '#main';"
+          style="cursor: pointer"
+          >[새로고침]</a
+        >
+      </div>
+    </footer>
   </div>
 </section>
 
 <script>
-  let fileUpload = document.getElementById("file-upload");
-  let uploadImage = document.getElementById("upload-image");
+  function test() {
+    location.href = "#reslut";
 
-  function previewFile() {
-    let file = fileUpload.files[0];
-    let reader = new FileReader();
+    document.getElementById("res_img").src = "/static/images/loading.png";
+    document.getElementById("laod_p").innerHTML = "loading...";
 
-    reader.onloadend = function () {
-      // Create a preview element based on the file type
-      let preview = null;
+    const input_file = document.querySelector("#file_form");
 
-      if (file.type.startsWith("image/")) {
-        preview = document.createElement("img");
-        preview.classList.add("preview");
-        preview.src = reader.result;
-      } else if (file.type.startsWith("video/")) {
-        preview = document.createElement("video");
-        preview.classList.add("preview");
-        preview.controls = true;
-        preview.src = reader.result;
-      }
+    let fn = Math.floor(Date.now() / Math.random());
 
-      // Replace the upload image with the preview element
-      if (preview) {
-        uploadImage.parentNode.replaceChild(preview, uploadImage);
-      }
-    };
+    let data = new FormData(input_file);
+    data.append("name", fn);
 
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+    $.ajax({
+      type: "POST",
+      url: "/upload/load",
+      data: data,
+      contentType: false,
+      processData: false,
+
+      success: (res) => {
+        // console.log(res);
+        // console.log(res["msg"]);
+        let img = "data:image/png;base64," + res["msg"];
+        document.getElementById("res_img").src = img;
+        document.getElementById("laod_p").innerHTML = "done!";
+      },
+    });
   }
 
-  function clearFile() {
-    // Clear the file input value and restore the default image
-    fileUpload.value = null;
-    uploadImage.src = "static/images/pic08.jpg";
+  function download_img() {
+    var a = document.createElement("a");
+    a.href = document.getElementById("res_img").src;
+    a.download = "download.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 </script>
