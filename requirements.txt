@@ -3,15 +3,11 @@
 
 # Base ----------------------------------------
 numpy>=1.18.5
-pandas>=1.1.4
 matplotlib>=3.2.2
-seaborn>=0.11.0
-opencv-python>=4.6.0
 Pillow>=7.1.2
 PyYAML>=5.3.1
 requests>=2.23.0
 scipy>=1.4.1
-ultralytics
 
 # Web -----------------------------------
 flask >= 2.2.3
@@ -21,3 +17,11 @@ flask-wtf >= 1.1.1
 flask-migrate >= 4.0.4
 email_validator
 pymysql >= 1.0.2
+
+# Plotting ------------------------------------
+pandas>=1.1.4
+seaborn>=0.11.0
+
+# Model ------------------------------------
+opencv-python>=4.6.0
+ultralytics
