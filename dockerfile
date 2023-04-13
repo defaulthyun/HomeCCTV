@@ -1,5 +1,5 @@
 # 베이스 이미지
-FROM python:3.10 
+FROM python:3.10 AS builder
 
 # 작업 디렉토리 지정 (없을 시 생성)
 WORKDIR /HOMECCTV_ENV
@@ -13,8 +13,8 @@ COPY requirements.txt /HOMECCTV_ENV
 # 명령어는 pip3 install -r requirements.txt
 # 마운트되고, 컨테이너가 가동되면서 pip3 명령수행시 정확하게 명령어를 인식하게 하기위해 캐싱 활성화 (선택사항)
 
+RUN apt update && apt-get -y upgrade
 # Selective Search - import cv2 에러 해결법
-RUN apt update
 RUN apt-get -y install libgl1-mesa-glx
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r requirements.txt
 
@@ -34,9 +34,11 @@ ENV FLASK_APP service
 ENV FLASK_RUN_PORT 8000
 ENV FLASK_RUN_HOST 0.0.0.0
 
-# 포트 설정 : 8000
+# container의 service port를 설정 : 8000
 EXPOSE 8000
 
 # 구동 명령
-ENTRYPOINT [ "flask" ] 
-CMD ["run"]
+ENTRYPOINT [ "/bin/bash", "./docker-migrate.sh"]
+
+FROM builder AS flask-env
+CMD [ "/bin/bash", "./docker-migrate.sh"]

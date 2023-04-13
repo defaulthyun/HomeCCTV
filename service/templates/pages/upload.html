@@ -33,7 +33,7 @@
   <div class="container">
     <header>
       <h2 class="alt">결과</h2>
-      <p id="laod_p">please upload your file!</p>
+      <p id="load_p">please upload your file!</p>
     </header>
     <footer>
       <div>
@@ -68,11 +68,9 @@
     location.href = "#reslut";
 
     document.getElementById("res_img").src = "/static/images/loading.png";
-    document.getElementById("laod_p").innerHTML = "loading...";
+    document.getElementById("load_p").innerHTML = "loading...";
 
     const input_file = document.querySelector("#file_form");
-
-    let fn = Math.floor(Date.now() / Math.random());
 
     let data = new FormData(input_file);
     data.append("name", fn);
@@ -89,7 +87,7 @@
         // console.log(res["msg"]);
         let img = "data:image/png;base64," + res["msg"];
         document.getElementById("res_img").src = img;
-        document.getElementById("laod_p").innerHTML = "done!";
+        document.getElementById("load_p").innerHTML = "done!";
       },
     });
   }

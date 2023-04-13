@@ -1,4 +1,4 @@
-import os
+import os, sys, time, random, json
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 
@@ -10,10 +10,38 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 migrate = Migrate()
 
+# AWS S3 - Boto3 패키지 사용
+import boto3
+from botocore.client import Config
+
+# # 아마존 생태꼐 바깥쪽에서 아마존 엑세스 처리로 사용 할 설정된 키값 로드 (깃허브 업로드 X - AWS 직접 연락옴)
+with open("./key.json") as f:
+    keys = json.load(f)
+
+SQS = boto3.client(
+    "sqs",
+    aws_access_key_id=keys["ACCESS_KEY_ID"],
+    aws_secret_access_key=keys["ACCESS_SECRET_KEY"],
+    config=Config(signature_version="s3v4"),
+    region_name="ap-southeast-2", # 각자 설정된 지역 다름
+)
+S3 = boto3.resource(
+    "s3",
+    aws_access_key_id=keys["ACCESS_KEY_ID"],
+    aws_secret_access_key=keys["ACCESS_SECRET_KEY"],
+    config=Config(signature_version="s3v4"),
+    region_name="ap-southeast-2",
+)
+
+BUCKET_NAME = "homecctv-bk"
+
 # 접속 URL 설정
 def create_app():
     # Flask 객체 생성 
     app = Flask(__name__)
+    
+    # Socketio 사용
+    socketio = SocketIO(app)
 
     # 환경 변수 초기화
     init_environment(app)
