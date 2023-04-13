@@ -5,8 +5,6 @@ from flask import current_app
 from service.controllers import bp_upload as upload
 from service.model.models import User
 
-from werkzeug.utils import secure_filename  # 업로드할 파일이 실제 시스템에 저장되기 전 이름을 보호하기 위해 사용
-
 from flask import render_template, request, Response, redirect, url_for, jsonify
 from service.controllers import bp_upload as upload
 import os, time, random, cv2
@@ -15,8 +13,9 @@ from ultralytics import YOLO
 from PIL import Image
 import base64
 
-fire_dect = YOLO("service/predict_data/model/fire.pt")
+from werkzeug.utils import secure_filename  # 업로드할 파일이 실제 시스템에 저장되기 전 이름을 보호하기 위해 사용
 
+fire_dect = YOLO("service/predict_data/model/fire.pt")
 
 @upload.route("/load", methods=["POST"])
 def load():

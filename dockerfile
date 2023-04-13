@@ -2,16 +2,20 @@
 FROM python:3.10 
 
 # 작업 디렉토리 지정 (없을 시 생성)
-WORKDIR /HOMECCTV
+WORKDIR /HOMECCTV_ENV
 
 # 1개의 컨테이너에는 1개의 소프트웨어를 담는다
 # 가상환경이 필요없다
 # 필요한 설치 패키지를 기술한 파일을 ADD or COPY
-COPY requirements.txt /HOMECCTV
+COPY requirements.txt /HOMECCTV_ENV
 
 # 통상 리눅스에는 pip -> python 2.x , pip3 -> python 3.x
 # 명령어는 pip3 install -r requirements.txt
 # 마운트되고, 컨테이너가 가동되면서 pip3 명령수행시 정확하게 명령어를 인식하게 하기위해 캐싱 활성화 (선택사항)
+
+# Selective Search - import cv2 에러 해결법
+RUN apt-get update
+RUN apt-get -y install libgl1-mesa-glx
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r requirements.txt
 
 # 원소스 -> /service 밑으로 이동
@@ -22,7 +26,7 @@ RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r requirements.txt
 # 방법 4 : 로컬상에 소스가 있다면 그냥 COPY
 # 방법 5 : AWS Cloud9에서 작업했다면 -> 여기서 바로 빌드(1~4 병행) -> 이미지 등록
 
-COPY . /service
+COPY . /HOMECCTV_ENV    
 
 # 환경변수, 앱의 이름은 flask run 명령시 자동 인식하는 이름이므로 생략
 # 차후 프로덕션인 경우 수정

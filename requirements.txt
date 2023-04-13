@@ -22,7 +22,6 @@ flask-wtf >= 1.1.1
 flask-migrate
 email_validator
 pymysql >= 1.0.2
-# ultralytics
 
 # Logging -------------------------------------
 # tensorboard>=2.4.1
@@ -32,6 +31,10 @@ pymysql >= 1.0.2
 # Plotting ------------------------------------
 pandas>=1.1.4
 seaborn>=0.11.0
+
+# Model ------------------------------------
+opencv-python
+ultralytics
 
 # Export --------------------------------------
 # coremltools>=6.0  # CoreML export

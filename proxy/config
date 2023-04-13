@@ -7,6 +7,6 @@ server {
     location / {
         # 포워딩한 주소 대입, backend는 나중에 물리적 머신이 
         # 나눠지면 IP나 도메인으로 변경가능해짐
-        proxy_pass   http://backend:8000;
+        proxy_pass   http://service:8000;
     }
 }
