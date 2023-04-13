@@ -14,7 +14,7 @@ COPY requirements.txt /HOMECCTV_ENV
 # 마운트되고, 컨테이너가 가동되면서 pip3 명령수행시 정확하게 명령어를 인식하게 하기위해 캐싱 활성화 (선택사항)
 
 # Selective Search - import cv2 에러 해결법
-RUN apt update && apt-get install python3 python3-pip -y
+RUN apt update
 RUN apt-get -y install libgl1-mesa-glx
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r requirements.txt
 
