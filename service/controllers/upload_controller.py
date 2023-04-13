@@ -38,7 +38,7 @@ def load():
             color=(255, 0, 0),
             thickness=2,
         )
-
+    
     # 4. 이미지를 html에서 읽을 수 있도록 인코딩 해준다
     _, buffer = cv2.imencode(".png", img)
     encoded_img = base64.b64encode(buffer).decode("utf-8")
